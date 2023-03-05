@@ -1,10 +1,11 @@
 #The image used for the backed is node alpine ~ mainly because it is light weight 
 #according to the documentation it is around 5mbs
 #
-FROM node:latest-alpine
+FROM node:alpine
 
 # The working   directory for the client app
 WORKDIR /app/client
+
 
 # copy the package.json to the image's context
 COPY package.json package.json
