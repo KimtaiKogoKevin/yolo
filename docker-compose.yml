@@ -1,17 +1,37 @@
 version: "3.8"
 
 services:
-  mongodb:
+  mongo:
     image: mongo:latest
+    container_name: mongo
     restart: unless-stopped
     env_file: ./.env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     ports:
-      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
-    # volumes:
-    #   - db:/data/db
+      - "27017:27017"
+    volumes:
+      - yolo_vol:/data/db
+    networks:
+      - yolo_network
+
+    
+  mongo-express:
+    image: mongo-express
+    restart: unless-stopped
+
+    ports:
+      - 8081:8081
+
+    environment:
+      
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=$MONGODB_USER
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGODB_PASSWORD
+      - ME_CONFIG_MONGODB_URL=mongodb://$MONGODB_USER:$MONGODB_PASSWORD@mongo:27017/?authSource=admin
+    links:
+      - mongo
+    
   backend:
     depends_on:
       - mongodb
@@ -28,8 +48,20 @@ services:
 
   client:
     build: ./client
-    ports:
-
-
+    ports: 
+      - 3000:3000
+    stdin_open: true
+    tty: true 
+    depends_on:
+      - backend
+    volumes:
+      - yolo_vol:/data/db
 volumes:
-  db:
+  yolo_vol:
+      driver: local  
+
+networks:
+  mongo_network:
+    external:true
+
+
