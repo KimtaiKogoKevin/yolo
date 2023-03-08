@@ -43,7 +43,7 @@ COPY package*.json ./
 
 
 
-COPY --from=builder /app  ./
+COPY --from=builder /app  /app
 
 
 #Expose port 5000 and execute the command to start the  backend server

@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const upload = multer();
+require("dotenv").config();
 
 const productRoute = require('./routes/api/productRoute');
+const {DB_USER, DB_PASSWORD} =process.env; //added place holders for database username and password
 
 // Connecting to the Database
-let mongodb_url = "mongodb+srv://kevinkogo:4DKRzGoYbWwS3iku@ipweekone.gus6huv.mongodb.net/?retryWrites=true";
+let mongodb_url = "mongodb+srv://${DB_USER}:${DB_PASSWORD}@ipweekone.gus6huv.mongodb.net/?retryWrites=true";
 let dbName = 'yolomy';
 
 // define a url to connect to the database
