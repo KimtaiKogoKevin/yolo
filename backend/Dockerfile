@@ -18,7 +18,7 @@ RUN npm install
 #Copy the project from its backend directory into the working directory declared above 
 COPY . .
 
-RUN npm install --omit=dev
+RUN npm install
 
 
 #Expose port 5000 and execute the command to start the  backend server

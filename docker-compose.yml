@@ -1,67 +1,107 @@
 version: "3.8"
 
 services:
+
+
+
   mongo:
     image: mongo:latest
-    container_name: mongo
-    restart: unless-stopped
-    env_file: ./.env
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    container_name: 'kevins-mongodb-container'
+    restart: always
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=kevinkogo
+    #   - MONGO_INITDB_ROOT_PASSWORD=4DKRzGoYbWwS3iku
+    #   - MONGO_INITDB_DATABASE=yolomy
     ports:
       - "27017:27017"
+
+    
     volumes:
+      # - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
       - yolo_vol:/data/db
+
+    # command: [--auth]
     networks:
       - yolo_network
+
+
+
+
+
+
 
     
   mongo-express:
     image: mongo-express
-    restart: unless-stopped
+    restart: always
 
     ports:
       - 8081:8081
 
+    env_file: ./.env
+    
+
     environment:
+
       
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=$MONGODB_USER
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGODB_PASSWORD
-      - ME_CONFIG_MONGODB_URL=mongodb://$MONGODB_USER:$MONGODB_PASSWORD@mongo:27017/?authSource=admin
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=kevinkogo
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=4DKRzGoYbWwS3iku
+      - ME_CONFIG_MONGODB_URL=mongodb://mongo:27017/yolomy
+
     links:
       - mongo
+    networks:
+      - yolo_network
+    volumes:
+      - yolo_vol:/data/db
+
+
+
+
+
+
     
   backend:
+    image: kimutaikk/backend_image_yolo:v1.0.2
     depends_on:
-      - mongodb
-    build: ./backend
-    restart: unless-stopped
+      - mongo
+    # build: ./backend
+    restart: always
     env_file: ./.env
     ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+      - 5000:5000
     environment:
-      - DB_USER=$MONGODB_USER
-      - DB_PASSWORD=$MONGODB_PASSWORD
+        PORT: 5000
+        DB_URI: mongodb://mongo:27017
+
+    # - CONN_STR=mongodb://kevins-mongodb-container:27017/yolomy
+   
     stdin_open: true
     tty: true
 
+    networks:
+      - yolo_network
+    volumes:
+      - yolo_vol:/data/db
+
+
   client:
-    build: ./client
+    image: kimutaikk/client_image_yolo:v1.0.0
+     
+    # build: ./client
     ports: 
       - 3000:3000
     stdin_open: true
     tty: true 
     depends_on:
       - backend
-    volumes:
-      - yolo_vol:/data/db
+   
 volumes:
-  yolo_vol:
-      driver: local  
+  yolo_vol: {}
+
 
 networks:
-  mongo_network:
-    external:true
+  yolo_network:
+      driver: bridge
 
 

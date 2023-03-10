@@ -46,7 +46,7 @@ COPY package*.json ./
 COPY --from=builder /app  /app
 
 
-#Expose port 5000 and execute the command to start the  backend server
-EXPOSE 5000
+#Expose port 3000 and execute the command to start the  backend server
+EXPOSE 3000
 
 CMD [ "npm", "start" ]
