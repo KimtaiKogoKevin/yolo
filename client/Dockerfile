@@ -17,13 +17,7 @@ RUN npm install
 
 #Copy the project from its client directory into the working directory declared above 
 COPY .  .
-# COPY ./src/ ./
-# COPY ./public/ ./
 
-#remove node mosuled to optimize the size of the image
-#  RUN rm -rf node_modules
-
-#  RUN npm run build
 
 
 
@@ -34,7 +28,6 @@ FROM node:12-alpine
 
 WORKDIR /app
 
-# COPY package*.json ./
 
 
 
