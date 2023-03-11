@@ -1,6 +1,6 @@
-#Basic Microservice 
-###Choice of image 
-#####Backend and Clientside node image
+# Basic Microservice 
+### Choice of image 
+##### Backend and Clientside node image
 I researched the various node images available on the docker hub registry to determine the best Node.js  image to use for this task.
 Some of the aspects put into consideration were the number of dependencies the image has as well as the number of security issues the specific package has, in this case, the default node image had 409 Os dependencies and over 289 vulnerabilities.
 The node: bullseye image also had the same number of dependencies and vulnerabilities as the default node image, however, the slim version of the node: bullseye image had a significant reduction in OS dependencies and OS security vulnerabilities which were 97 and 55 respectively.  Among all of the images I was experimenting with, the smallest was the node: alpine image, it had 16 Os dependencies and 2 OS security vulnerabilities.
