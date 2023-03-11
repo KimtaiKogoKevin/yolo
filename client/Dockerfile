@@ -23,7 +23,7 @@ COPY .  .
 #remove node mosuled to optimize the size of the image
 #  RUN rm -rf node_modules
 
- RUN npm run build
+#  RUN npm run build
 
 
 
@@ -34,9 +34,8 @@ FROM node:12-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+# COPY package*.json ./
 
-# RUN npm install 
 
 
 
