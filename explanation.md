@@ -9,7 +9,7 @@ Weighing the pros and cons mentioned above my final decision was to go with the 
 The [client image](https://hub.docker.com/repository/docker/kimutaikk/client_image_yolo)  and the [backend image](https://hub.docker.com/repository/docker/kimutaikk/backend_image_yolo), which both use node:12-alpine had a size of 270MB and 119 MB respectively, bringing the total image size of these two images to 389MB.
 
 ###### Docker file  directives used for the client Image and backend Image
-**FROM node:12-alpine as builder** _this line specifies the image we are using to build the docker file, the from statement has an alias named builder, which allows me to copy the directory from this build stage and pass it to the other build stage which is documented below_
+**FROM node:12-alpine as builder** _this line specifies the base image we are using to build the docker file, the from statement has an alias named builder, which allows me to copy the directory from this build stage and pass it to the other build stage which is documented below_
 
 **WORKDIR /app**  _this directive sets the working directory of the container to be app_
 
@@ -23,7 +23,7 @@ The [client image](https://hub.docker.com/repository/docker/kimutaikk/client_ima
 
 **WORKDIR /app** _set the working directory  of the second base image from the second build stage_
 
-**COPY  - -from=builder /app /app**  _Copies all the content in the app directory to the app directory of the second build stage, in this way the already installed dependencies are added to the second build stage, which reduces the size of the image by a considerate amount_
+**COPY  - -from=builder /app /app**  _Copies all the content in the app directory of the fitst build into the app directory of the second build stage, in this way the already installed dependencies are added to the second build stage, which reduces the size of the image by a considerate amount_
 
 **CMD [ “npm”, “start” ]** _This command starts the application by running the start script in the package.json file_
 
@@ -32,7 +32,14 @@ The [client image](https://hub.docker.com/repository/docker/kimutaikk/client_ima
 
 ### Docker Compose 
 ##### Services
-My Docker compose file
+My Docker compose file has  four services , namely 
+` ` ` 
+mongo 
+mongo-express
+backend
+client 
+
+` ` ` 
 
 
 
