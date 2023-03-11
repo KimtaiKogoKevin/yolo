@@ -54,7 +54,7 @@ To be able to use mongodb we need to create a user in the mongo container we cre
 - Once in the container type _mongosh_ 
 - Type use admin to set administartor credentials ,  it should notify you that it switched to admin database. Once that is done paste the following 
 
-***note: You can use any username and password (pwd) value***
+***note: You can use any username and password (pwd) value but they must be the same values used in the server,js Mongo Url***
 
  ```
  db.createUser(
