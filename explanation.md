@@ -81,8 +81,8 @@ To be able to use mongodb we need to create a user in the mongo container we cre
  ```
  db.createUser(
     {
-    user:"kevinkogo",
-    pwd:"4DKRzGoYbWwS3iku",
+    user:"YourUsername",
+    pwd:"Your Password",
     roles : [
         {
             role:"readWrite",
@@ -102,8 +102,8 @@ To be able to use mongodb we need to create a user in the mongo container we cre
  ```
  db.createUser(
     {
-    user:"kevinkogo",
-    pwd:"4DKRzGoYbWwS3iku",
+    user:"YourUsername",
+    pwd:"Your Password",
     roles : [
         {
             role:"readWrite",
@@ -163,8 +163,8 @@ To be able to use mongodb we need to create a user in the mongo container we cre
 
 ```
 
-MONGODB_USER = kevinkogo 
-MONGODB_PASSWORD = 4DKRzGoYbWwS3iku
+MONGODB_USER = "your username"_
+MONGODB_PASSWORD = "your password"
 
 ```
 
