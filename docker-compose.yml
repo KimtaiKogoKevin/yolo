@@ -17,7 +17,6 @@ services:
       # volume where db data is stored for perstitence
       - my_yolo_vol:/data/db 
 
-    # command: [--auth]
     networks:
       - yolo_network
 
