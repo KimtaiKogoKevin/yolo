@@ -31,4 +31,5 @@ WORKDIR /app
 
 
 COPY --from=builder /app /app
+
 CMD [ "npm", "start" ]
