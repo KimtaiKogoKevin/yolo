@@ -1,10 +1,10 @@
 ---
 
-  #Play 1 - Backend server related tasks
-- name: Play Backend - Install required dependencies , pull image and start contianer
-  become: yes
-  hosts: backend
 
+  #install packages for all hosts 
+- name: Install Packages  
+  become: yes
+  hosts: backend , frontend
 
 
   tasks:
@@ -58,36 +58,55 @@
       pip:
         name: docker
 
-  #   - name: Add MongoDB repository
-  #     apt_repository: 
-  #      repo: 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen'
-  #      state: present
-  #   - name: install mongodb
-  #     apt: 
-  #      name: mongodb-org 
-  #      state: latest 
-  #      update_cache: yes
-  #     notify:
-  #     - start mongodb
-  # handlers:
-  #   - name: start mongodb
-  #     service: 
-  #     name: mongod
-  #     state: started
 
 
-  #   - name: Create MongoDB administrative user siteUserAdmin
-  #     mongodb_user:
-  #       login_user: "kevinkogo"
-  #       login_password: "4DKRzGoYbWwS3iku"
-  #       login_port: "27017"
-  #       database: "yolomy"
-  #       name: "kevinkogo"
-  #       password: "4DKRzGoYbWwS3iku"
-  #       roles:
-  #         - { db: "admin", role: "readWrite" }
-  #         - { db: "yolomy", role: "readWrite" }
-   
+
+   #Play Run the Mongo DB Server
+
+- name: Install and configure MongoDB
+  hosts: mongo
+  become: true
+  # vars:
+  #   mongo_version: "4.4"
+  #   mongo_admin_user: admin
+  #   mongo_admin_password: mypassword
+  #   mongo_auth_db: admin
+  tasks:
+    - name: Add MongoDB repository
+      apt_repository:
+        repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse
+        state: present
+        update_cache: yes
+        cache_valid_time: 3600
+        keyserver: hkp://keyserver.ubuntu.com:80
+        key_id: 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+    - name: Install MongoDB
+      apt:
+        name: mongodb-org
+        state: present
+
+    - name: Start MongoDB
+      service:
+        name: mongod
+        state: started
+        enabled: yes
+        
+    # - name: Specify the volume
+    #   docker_volume:
+    #     name: db_data
+
+  #Play 1 - Backend server related tasks
+- name: Play Backend - Install required dependencies , pull image and start contianer
+  become: yes
+  hosts: backend
+
+
+
+
+
+ 
+  tasks:
     - name: Pull backend image
        
       docker_image:
@@ -100,7 +119,7 @@
         image: kimutaikk/backend_image_yolo:v1.0.2
         name: backend_container
         state: started
-        ports: 5000:5000
+        ports: 5009:5009
 
 
 
@@ -118,55 +137,7 @@
 
 
   tasks:
-      # Install aptitude package manager for Debian-based systems
-    - name: Install aptitude
-      apt:
-        name: aptitude
-        state: latest
-        update_cache: true
-
-    # Install packages essential for running a developer environment 
-    # on a Debian-based system.
-    - name: Install required system packages
-      apt:
-        pkg:
-          - apt-transport-https
-          - ca-certificates
-          - curl
-          - software-properties-common
-          - python3-pip
-          - virtualenv
-          - python3-setuptools
-          - nodejs
-          - npm 
-        state: latest
-        update_cache: true
-
-    # Sets key used to verify your install packages are from an authorized source.
-    - name: Add Docker GPG apt Key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
-
-    # Sets repository containing packages needed to install
-    # and run Docker on a Debian-based system.
-    - name: Add Docker Repository
-      apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu focal stable
-        state: present
-
-    # Installs Docker community edition
-    - name: Update apt and install docker-ce
-      apt:
-        name: docker-ce
-        state: latest
-        update_cache: true
-
-    # Installs Docker Module for Python.
-    # Allows you to manage Docker containers from within Ansible playbooks.
-    - name: Install Docker Module for Python
-      pip:
-        name: docker
+    
         
     - name: Pull client image
       
@@ -182,7 +153,9 @@
         state: started
         ports: 3000:3000
 
-   
+
+
+ 
    
     
         

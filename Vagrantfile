@@ -8,6 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "geerlingguy/ubuntu2004"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.network :private_network, ip: "192.168.60.7"
   config.vm.provider :virtualbox do |v|
     v.memory = 512
     v.linked_clone = true
@@ -25,11 +26,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     frontend.vm.network :private_network, ip: "192.168.60.5"
   end
 
-  # # Database server.
-  # config.vm.define "mongo" do |db|
-  #    db.vm.hostname = "orc-mongo.yolo"
-  #   db.vm.network :private_network, ip: "192.168.60.6"
-  # end
+  # Database server.
+  config.vm.define "mongo" do |mongo|
+     mongo.vm.hostname = "orc-mongo.yolo"
+    mongo.vm.network :private_network, ip: "192.168.60.6"
+  end
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "main.yml"
