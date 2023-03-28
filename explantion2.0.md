@@ -82,7 +82,7 @@ My playbook can be broken down into the following steps
 ## Installation of the backend docker image and running the container
 
 - specify host to backend , which is the defined host name in the host file , also add root permissions by setting become boolean as true
-- First task executed is pulling the [__kimutaikk/backend_image_yolo:v1.0.3__]() image from docker  using the __docker_image module__, remember docker was intalled on all hosts in play one 
+- First task executed is pulling the [__kimutaikk/backend_image_yolo:v1.0.3__](https://hub.docker.com/repository/docker/kimutaikk/backend_image_yolo) image from docker  using the __docker_image module__, remember docker was intalled on all hosts in play one 
 - The next task is running the backend container , setting its name , state and port using the __docker_container__ module 
 - Next I specify a network and connect the backend container to it using the __docker_network module__
 - And lastly I specify a volume , asign it to the  default volume directoy for mongodb which is **data/db** 
@@ -91,7 +91,7 @@ My playbook can be broken down into the following steps
 ## Installation of the cliient docker image and running the container
 
 - specify host to frontend , which is the defined host name in the host file , also add root permissions by setting become boolean as true
-- First task executed is pulling the [__kimutaikk/client_image_yolo:v1.0.1__]() image from docker  using the __docker_image module__, remember docker was intalled on all hosts in play one 
+- First task executed is pulling the [__kimutaikk/client_image_yolo:v1.0.1__](https://hub.docker.com/repository/docker/kimutaikk/client_image_yolo) image from docker  using the __docker_image module__, remember docker was intalled on all hosts in play one 
 - The next task is running the frontend container , setting its name , state and port using the __docker_container__ module 
 - Next I specify a network and connect the frontend container to it using the __docker_network module__
 - And lastly I specify a volume , asign it to the  default volume directoy for mongodb which is **data/db** 
@@ -100,7 +100,7 @@ My playbook can be broken down into the following steps
 - Ensure you are in the root directory of the  project where the vagrant file is located 
 - run vagrant up to start up the virtual machines 
 - run vagrant provison to provison them with the neccessary resources 
-- run __ansible-playbook main.yml 
+- run __ansible-playbook main.yml__
 
 # To start the client application 
 - once the play book has ran with the above commands 
