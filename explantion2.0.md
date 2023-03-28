@@ -2,8 +2,8 @@
 ## Configuration management using ansible 
 ### Inventory
 - I decided to place the inventory and andible.cfg files in the /etc/ansible directory. To access this directory open your terminal and from your root directory: 
-- cd into /etc *** do not forget the slash *** 
-- cd into ansible and open in code  *** cd ansible code . ***
+- cd into /etc ***do not forget the slash*** 
+- cd into ansible and open in code  ***cd ansible code .***
 
 # Host and ansible.cfg file description 
 
@@ -66,7 +66,7 @@ My playbook can be broken down into the following steps
 - Installation of docker community edition
 - installation of docker modules for pyhton 
 
-*** I referenced the above information from [this link](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-20-04#step-1-preparing-your-playbook) ***
+***I referenced the above information from [this link](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-20-04#step-1-preparing-your-playbook)***
 
 ## Play two 
 ## Installation and configuration of MongoDb on mongo database host
@@ -105,8 +105,8 @@ My playbook can be broken down into the following steps
 # To start the client application 
 - once the play book has ran with the above commands 
 - run ***vagrant ssh frontend** to access the front end virtual machine 
-- This machine contains a running container called *** client_container *** as defined in the main.yml playbook file
-- run *** sudo exec -it client_container sh *** to access the running container
+- This machine contains a running container called ***client_container*** as defined in the main.yml playbook file
+- run ***sudo exec -it client_container sh*** to access the running container
 - once in the container , you will see the working directory app 
 - From here run npm start , it should dtart the development server 
 - To access the application on your browser use the IP address defiend in the vagrant file , either **192.168.60.8:2222** or **192.168.60.7:2222** . It should open the homepage of the E-commerce shop
