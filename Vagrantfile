@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Application server 2.
   config.vm.define "frontend" do |frontend|
     frontend.vm.hostname = "orc-frontend.yolo"
-    frontend.vm.network :private_network, ip: "192.168.60.5"
+    frontend.vm.network :private_network, ip: "192.168.60.8"
   end
 
   # Database server.
