@@ -20,8 +20,8 @@ COPY . .
 
 
 
-#Expose port 5000 and execute the command to start the  backend server
-EXPOSE 5009
+#Expose port 5001 and execute the command to start the  backend server
+EXPOSE 5001
 
 
 

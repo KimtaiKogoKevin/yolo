@@ -4,7 +4,7 @@
   #install packages for all hosts 
 - name: Install Packages  
   become: yes
-  hosts: backend , frontend
+  hosts: all
 
 
   tasks:
@@ -72,26 +72,28 @@
   #   mongo_admin_password: mypassword
   #   mongo_auth_db: admin
   tasks:
+    - name: Import MongoDB public GPG Key
+      apt_key:
+        url: https://www.mongodb.org/static/pgp/server-4.4.asc
+        state: present
+
     - name: Add MongoDB repository
       apt_repository:
-        repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse
+        repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse
         state: present
-        update_cache: yes
-        cache_valid_time: 3600
-        keyserver: hkp://keyserver.ubuntu.com:80
-        key_id: 9DA31620334BD75D9DCB49F368818C72E52529D4
 
     - name: Install MongoDB
       apt:
         name: mongodb-org
         state: present
 
-    - name: Start MongoDB
-      service:
+    - name: Start MongoDB service
+      systemd:
         name: mongod
-        state: started
         enabled: yes
-        
+        state: started
+
+   
     # - name: Specify the volume
     #   docker_volume:
     #     name: db_data
@@ -119,7 +121,7 @@
         image: kimutaikk/backend_image_yolo:v1.0.2
         name: backend_container
         state: started
-        ports: 5009:5009
+        ports: 2222:5001
 
 
 
