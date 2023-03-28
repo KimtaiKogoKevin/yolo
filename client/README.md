@@ -1,6 +1,4 @@
-# NOTE
-# ***To read documentaion for the IP2 creating a basic microservice , see explanation.md***
-# ***To read documentaion for the IP3 configuration management , see explanation2.0.md***
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

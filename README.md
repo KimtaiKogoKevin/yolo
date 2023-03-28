@@ -1,3 +1,7 @@
+# NOTE
+# ***To read documentaion for the IP2 creating a basic microservice , see explanation.md***
+# ***To read documentaion for the IP3 configuration management , see explanation2.0.md***
+
 # Requirements
 Make sure that you have the following installed:
 - [node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) 
