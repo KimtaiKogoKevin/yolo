@@ -119,7 +119,7 @@
       docker_volume:
         name: my_yolo_vol:data/db
 
-  #Play 1 - Backend server related tasks
+  #Play  - Backend server related tasks
 - name: Play Backend - Install required dependencies , pull image and start contianer
   become: yes
   hosts: backend
