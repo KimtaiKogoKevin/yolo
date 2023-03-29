@@ -1,4 +1,8 @@
 # Kevin Kimutai Kogo
+
+At this stage I am still trying to configure the mongo db connection , the automatic launch of the client applictaion .
+For now i manually access the client application , using the steps highleted in the start a client section.
+As of now the backend has not been able to connect to mongo db , and i cannot access the backend due to port issues.
 ## Configuration management using ansible 
 ### Inventory
 - I decided to place the inventory and andible.cfg files in the /etc/ansible directory. To access this directory open your terminal and from your root directory: 
@@ -54,6 +58,21 @@ The network configuration , memory allocation as well the defention of my three 
 
 These servers are the same ones defined in the host file above.
 
+
+# To run this play book 
+- Ensure you are in the root directory of the  project where the vagrant file is located 
+- run vagrant up to start up the virtual machines 
+- run vagrant provison to provison them with the neccessary resources 
+- run __ansible-playbook main.yml__
+
+# To start the client application 
+- once the play book has ran with the above commands 
+- run ***vagrant ssh frontend** to access the front end virtual machine 
+- This machine contains a running container called ***client_container*** as defined in the main.yml playbook file
+- run ***sudo exec -it client_container sh*** to access the running container
+- once in the container , you will see the working directory app 
+- From here run npm start , it should dtart the development server 
+- To access the application on your browser use the IP address defiend in the vagrant file , either **192.168.60.8:2222** or **192.168.60.7:2222** . It should open the homepage of the E-commerce shop
 # My play book 
 My playbook can be broken down into the following steps 
 
@@ -95,18 +114,3 @@ My playbook can be broken down into the following steps
 - The next task is running the frontend container , setting its name , state and port using the __docker_container__ module 
 - Next I specify a network and connect the frontend container to it using the __docker_network module__
 - And lastly I specify a volume , asign it to the  default volume directoy for mongodb which is **data/db** 
-
-# To run this play book 
-- Ensure you are in the root directory of the  project where the vagrant file is located 
-- run vagrant up to start up the virtual machines 
-- run vagrant provison to provison them with the neccessary resources 
-- run __ansible-playbook main.yml__
-
-# To start the client application 
-- once the play book has ran with the above commands 
-- run ***vagrant ssh frontend** to access the front end virtual machine 
-- This machine contains a running container called ***client_container*** as defined in the main.yml playbook file
-- run ***sudo exec -it client_container sh*** to access the running container
-- once in the container , you will see the working directory app 
-- From here run npm start , it should dtart the development server 
-- To access the application on your browser use the IP address defiend in the vagrant file , either **192.168.60.8:2222** or **192.168.60.7:2222** . It should open the homepage of the E-commerce shop

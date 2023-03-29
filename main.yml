@@ -72,52 +72,57 @@
   #   mongo_admin_password: mypassword
   #   mongo_auth_db: admin
   tasks:
-    # - name: Import MongoDB public GPG Key
-    #   apt_key:
-    #     url: https://www.mongodb.org/static/pgp/server-4.4.asc
-    #     state: present
+    - name: Import MongoDB public GPG Key
+      apt_key:
+        url: https://www.mongodb.org/static/pgp/server-4.4.asc
+        state: present
 
-    # - name: Add MongoDB repository
-    #   apt_repository:
-    #     repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse
-    #     state: present
+    - name: Add MongoDB repository
+      apt_repository:
+        repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse
+        state: present
 
-    # - name: Install MongoDB
-    #   apt:
-    #     name: mongodb-org
-    #     state: present
+    - name: Install MongoDB
+      apt:
+        name: mongodb-org
+        state: present
 
-    # - name: Start MongoDB service
-    #   systemd:
-    #     name: mongod
-    #     enabled: yes
-    #     state: started
-
-    - name: pull mongo latest container
-       
-      docker_image:
-        name: mongo:latest
-        source: pull
-
-    - name: Run the mongo container
-      
-      docker_container: 
-        image: mongo:latest
-        name: kevins-mongodb-container
+    - name: Start MongoDB service
+      systemd:
+        name: mongod
+        enabled: yes
         state: started
-        ports: 27017:27017
 
-    - name: Specify the network 
-      docker_network:
-        name: yolo_network
-        connected: 
-          - kevins-mongodb-container
+    # - name: pull mongo latest container
+       
+    #   docker_image:
+    #     name: mongo
+    #     source: pull
+
+    # - name: Specify the network 
+    #   docker_network:
+    #     name: yolo_network
+    #     connected: 
+    #       - kevins-mongodb-container
 
 
+
+    # - name: Run the mongo container
+      
+    #   docker_container: 
+    #     image: mongo
+    #     name: kevins-mongodb-container
+    #     state: started
+    #     ports: 27017:27017
+    #     networks:
+    #     - name: yolo_network
+    #     volume: /data/db
+
+    
    
-    - name: Specify the volume
-      docker_volume:
-        name: my_yolo_vol:data/db
+    # - name: Specify the volume
+    #   docker_volume:
+    #     name: my_yolo_vol
 
   #Play  - Backend server related tasks
 - name: Play Backend - Install required dependencies , pull image and start contianer
@@ -131,11 +136,19 @@
  
   tasks:
     - name: Pull backend image
+
+   
        
       docker_image:
         name: kimutaikk/backend_image_yolo:v1.0.3
         source: pull
 
+
+    - name: Specify the network 
+      docker_network:
+        name: yolo_network
+        connected: 
+          - backend_container
     - name: Run the  backend container using the backend image from docker hub 
       
       docker_container: 
@@ -143,16 +156,15 @@
         name: backend_container
         state: started
         ports: 2222:5001
+        networks:
+        - name : yolo_network
+        volumes: /data/db
       
     - name: Specify the volume
       docker_volume:
-        name: my_yolo_vol:data/db
+        name: my_yolo_vol
     
-    - name: Specify the network 
-      docker_network:
-        name: yolo_network
-        connected: 
-          - backend_container
+ 
 
 
 
@@ -191,6 +203,30 @@
         name: yolo_network
         connected: 
           - client_container
+    # - name: SSH into Docker
+    #   shell: ssh vagrant@127.0.0.1 -p 2200 -o StrictHostKeyChecking=no
+    # - name: Ensure firewalld is stopped (since this is a test server).
+    #   service: name=firewalld state=stopped
+    # - name: Wait shortly before check
+    #   pause:
+    #     seconds: 5
+    # - name: Ensure we got the App code
+      # git:
+      #     repo=git://github.com/aminjam/express-hello-world.git
+      #     dest=/opt/node-hello-world
+    
+      #Play SSh
+- name: SSH into Vagrant virtual machine
+  hosts: frontend
+  become: yes
+  gather_facts: no
+  vars:
+    ansible_ssh_common_args: "-i ~/.vagrant.d/insecure_private_key   -p 2200"
+  tasks:
+     - name: Execute a command on the Vagrant virtual machine
+       shell: echo "Hello, World!"
+
+
 
 
 
