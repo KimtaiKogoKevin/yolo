@@ -2,19 +2,19 @@ apiVersion: apps /v1
 kind: Deployment
 metadata:
   name: frontend-application-deployment
-  labels: frontend_app
+  # labels: frontend_app
 spec: 
   selector:
     matchLabels:
-      app: frontend
+      app: frontend-application-deployment
   replicas: 2
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend-application-deployment
     spec:
       containers:
-      - name: frontend_container
+      - name: frontend-application-deployment
         image: kimutaikk/client_image_yolo:v1.0.1
         ports: 
         - containerPort: 3001
