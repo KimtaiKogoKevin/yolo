@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-application-deployment
-  labels: frontend_app
+  # labels: frontend_app
 spec: 
   selector:
     matchLabels:
