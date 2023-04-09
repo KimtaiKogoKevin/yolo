@@ -14,7 +14,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend_container
+      - name: frontend-container
         image: kimutaikk/client_image_yolo:v1.0.1
         ports: 
         - containerPort: 3001
