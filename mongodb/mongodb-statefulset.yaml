@@ -1,23 +1,23 @@
 apiVersion: apps/v1 
 kind: StatefulSet
 metadata: 
-  name: mongodb
+  name: mongo
 spec:
-  serviceName: mongodb
+  serviceName: mongo
   replicas: 1
   selector:
     matchLabels:
-      app: mongodb
+      app: mongo
   template:
     metadata:
       labels: 
-        app: mongodb
-        selector: mongodb
+        app: mongo
+        selector: mongo
     
 
     spec: 
       containers:
-        - name: mongodb
+        - name: mongo
           image: mongo:4.0.17
           ports:
           - containerPort: 27017
@@ -34,4 +34,4 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 1Gi
+            storage: 100Gi
