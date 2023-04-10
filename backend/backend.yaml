@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: backend-application-deployment
+  # labels: frontend_app
+spec: 
+  selector:
+    matchLabels:
+      app: backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: kimutaikk/backend_image_yolo:v1.0.3
+        ports: 
+        - containerPort: 5000
