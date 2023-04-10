@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: mongodb
   labels:
-  app: mongodb
+    app: mongodb
 
 spec: 
   clusterIP: None
