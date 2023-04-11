@@ -8,9 +8,9 @@ require("dotenv").config();
 const productRoute = require('./routes/api/productRoute');
 
 // Connecting to the Database
-// let mongodb_url = "mongodb+srv://kevinkogo:4DKRzGoYbWwS3iku@ipweekone.gus6huv.mongodb.net/?retryWrites=true"; 
+let mongodb_url = "mongodb+srv://kevinkogo:4DKRzGoYbWwS3iku@ipweekone.gus6huv.mongodb.net/?retryWrites=true&w=majority"
 // let mongodb_url='mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@mongodb:27017/'
- let mongodb_url = "mongodb://mongodb-0.mongo:27017/"
+//  let mongodb_url = "mongodb://mongodb-0.mongo:27017/"
 let dbName = 'yolomy';
 // define a url to connect to the database
 const MONGODB_URI = process.env.MONGODB_URI || mongodb_url + dbName
