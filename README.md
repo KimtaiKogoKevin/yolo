@@ -1,6 +1,7 @@
 # NOTE
-### ***To read documentaion for the IP2 creating a basic microservice , see explanation.md***
-###  ***To read documentaion for the IP3 configuration management , see explanation2.0.md***
+### ***To read documentaion for the final IP using K8s read explanation_K8s.md file***
+### ***To read documentaion for the IP2 creating a basic microservice , see explanation_basicMicroservices.md***
+###  ***To read documentaion for the IP3 configuration management , see explanation_ansible.md***
 
 # Requirements
 Make sure that you have the following installed:
