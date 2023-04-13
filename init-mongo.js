@@ -11,3 +11,7 @@ db.createUser(
 
     }   
 )
+
+
+ connStr= 'mongodb://kevinkogo:4DKRzGoYbWwS3iku@mongodb:27017/yolomy'
+  
