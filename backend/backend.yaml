@@ -13,7 +13,7 @@ spec:
       labels:
         app: backend
     spec:
-     terminationGracePeriodSeconds: 30
+      terminationGracePeriodSeconds: 30
       containers:
       - name: backend-container2
         image: kimutaikk/backend_image_yolo:v1.0.4
