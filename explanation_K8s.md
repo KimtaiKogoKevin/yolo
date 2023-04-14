@@ -3,7 +3,7 @@
 ## Choice of Kubernetes Objects used (Infrastructure Components)
 ### Cluster 
 I created a cluster named ip8-cluster , with a location / zone of __us-central1-a__ , the cluster contains __3 nodes__  , having one control plane and two other worker nodes.
-
+# dummy text
 
 
 ### Pods 
