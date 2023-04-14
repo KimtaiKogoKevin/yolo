@@ -13,9 +13,11 @@ spec:
       labels:
         app: backend
     spec:
+     terminationGracePeriodSeconds: 30
       containers:
-      - name: backend-container
+      - name: backend-container2
         image: kimutaikk/backend_image_yolo:v1.0.4
+        imagePullPolicy: "Always"
         ports: 
         - containerPort: 5000
         # env:
