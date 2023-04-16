@@ -8,7 +8,7 @@ require("dotenv").config();
 const productRoute = require('./routes/api/productRoute');
 
 // Connecting to the Database
-let mongodb_url =  "mongodb://kevinkogo:4DKRzGoYbWwS3iku@mongo-0.mongodb-service:27017"
+let mongodb_url =  "mongodb://kevinkogo:4DKRzGoYbWwS3iku@mongodb-service.mongo-0:27017"
 
 // let mongodb_url = "mongodb://kevinkogo:4DKRzGoYbWwS3iku@mongodb:27017/"
 // let mongodb_url='mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@mongodb:27017/'
