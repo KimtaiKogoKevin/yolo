@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: backend-container
-        image: kimutaikk/backend_image_yolo:v1.1.0
+        image: kimutaikk/backend_image_yolo:v1.1.1
         imagePullPolicy: "Always"
         ports: 
         - containerPort: 5000
