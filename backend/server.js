@@ -10,7 +10,7 @@ const productRoute = require('./routes/api/productRoute');
 // Connecting to the Database
 let mongodb_url =  "mongodb://mongo-0.mongo.default.svc.cluster.local:27017"
 
-// let mongodb_url = "mongodb://kevinkogo:4DKRzGoYbWwS3iku@mongodb:27017/"
+
 // let mongodb_url='mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@mongodb:27017/'
 //  let mongodb_url = "mongodb://mongodb-0.mongo:27017/"
 let dbName = 'yolomy';
