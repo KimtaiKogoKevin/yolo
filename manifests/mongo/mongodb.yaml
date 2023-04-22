@@ -4,7 +4,7 @@ metadata:
   name: mongodb
 spec:
   serviceName: mongodb
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mongodb
@@ -19,14 +19,14 @@ spec:
         ports:
         - containerPort: 27017
         volumeMounts:
-        - name: data
+        - name: pvc
           mountPath: /data/db
   volumeClaimTemplates:
   - metadata:
-      name: data
+      name: pvc
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: standard
+      # storageClassName: standard
       resources:
         requests:
           storage: 1Gi
