@@ -21,7 +21,7 @@ COPY . .
 
 
 #Expose port 5001 and execute the command to start the  backend server
-EXPOSE 5001
+EXPOSE 5000
 
 
 
