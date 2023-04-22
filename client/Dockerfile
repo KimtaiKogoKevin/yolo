@@ -39,7 +39,7 @@ COPY --from=builder /app  /app
 
 
 #Expose port 3000 and execute the command to start the  backend server
-EXPOSE 3001
+EXPOSE 3000
 
 
 CMD [ "npm", "start" ]
