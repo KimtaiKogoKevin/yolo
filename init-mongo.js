@@ -1,7 +1,7 @@
 db.createUser(
     {
-    user:"kevinkogo",
-    pwd:"4DKRzGoYbWwS3iku",
+    user:"kogoman",
+    pwd:"X8DxK9d4x8i2KtOx",
     roles : [
         {
             role:"readWrite",
