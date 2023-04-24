@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: backend-application-service
 spec:
-  # type: LoadBalancer
-  clusterIP: None
+  type: LoadBalancer
   selector: 
     app: backend
   ports:
-  - port: 80
+  - name: http
+    port: 80
     targetPort: 5000
