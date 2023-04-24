@@ -4,7 +4,7 @@ metadata:
   name: app-ingress
 spec:
   rules:
-    - host: 35.193.151.206
+    - host: 
       http:
         paths:
           - path: /api
