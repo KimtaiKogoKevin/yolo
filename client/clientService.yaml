@@ -5,7 +5,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector: 
-    app: frontend
+    app: backend-application-service
+    tier: frontend
   ports:
 
   - name: http 
