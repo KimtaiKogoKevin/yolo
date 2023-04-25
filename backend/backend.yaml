@@ -1,8 +1,8 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: backend
-  labels: backend
+  name: backend-application-deployment
+  # labels: backend
 spec: 
   selector:
     matchLabels:
