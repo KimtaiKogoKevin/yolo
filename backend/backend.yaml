@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-application-deployment
-  # labels: frontend_app
+  labels: backend-application-deployment
 spec: 
   selector:
     matchLabels:
@@ -10,6 +10,7 @@ spec:
   replicas: 2
   template:
     metadata:
+      name: backend
       labels:
         app: backend
     spec:
