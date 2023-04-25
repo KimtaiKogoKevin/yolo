@@ -12,7 +12,7 @@ spec:
     metadata:
       name: backend
       labels:
-        app: backend
+        app:backend
     spec:
       terminationGracePeriodSeconds: 30
       containers:

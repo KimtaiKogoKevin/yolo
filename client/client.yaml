@@ -12,7 +12,7 @@ spec:
     metadata:
       name: frontend
       labels:
-        app: frontend
+        app:frontend
     spec:
       containers:
       - name: frontend-container
