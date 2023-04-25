@@ -1,8 +1,8 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: backend-application-deployment
-  labels: backend-application-deployment
+  name: backend
+  labels: backend
 spec: 
   selector:
     matchLabels:
@@ -12,7 +12,7 @@ spec:
     metadata:
       name: backend
       labels:
-        app:backend
+        app: backend
     spec:
       terminationGracePeriodSeconds: 30
       containers:
