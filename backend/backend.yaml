@@ -31,7 +31,7 @@ spec:
         ports: 
         - containerPort: 5000
         env:
-          - name: DB_PASSWORD
+          - name: PASSWORD
             valueFrom:
               secretKeyRef:
                 name: my-secret
