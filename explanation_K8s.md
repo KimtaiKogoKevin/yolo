@@ -1,4 +1,4 @@
-# Kimutai Kopko Kevin IP week 8 
+# Kimutai Kogo Kevin IP week 8 
 
 ## Choice of Kubernetes Objects used (Infrastructure Components)
 ### Cluster 
